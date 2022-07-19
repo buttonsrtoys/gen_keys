@@ -1,0 +1,13 @@
+targets:
+  $default:
+    builders: 
+      ewp|keys_file_builder:
+        enabled: true
+
+builders:
+  ewp|keys_file_builder:
+    import: 'package:gen_key/keys_file_builder.dart'
+    builder_factories: ['keysFileBuilder']
+    build_extensions: { ".dart": [".keys.dart"] }
+    auto_apply: dependents
+    build_to: source
