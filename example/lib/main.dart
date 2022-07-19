@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import '../sandbox_screen.dart';
 
 void main() {
-  runApp(const TestableExample());
+  runApp(const MyApp());
 }
 
-class TestableExample extends StatelessWidget {
-  const TestableExample({Key? key}) : super(key: key);
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:gen_key/key_meta.dart';
 
 Future<String> generateKeyClass(List<KeyMeta> keyMetas) async {
@@ -38,7 +39,7 @@ String _keyClassFromKeyMetas(List<KeyMeta> keyMetas) {
   return buffer.toString();
 }
 
-// visible for testing
+@visibleForTesting
 String keyDeclarationFromKeyMeta(KeyMeta keyMeta) {
   late String keyDeclaration;
   if (keyMeta.isFunction) {
