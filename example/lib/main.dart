@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:gen_key/annotations.dart';
+
+part 'main.keys.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
+@GenKey()
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
@@ -13,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(key: MainKeys.homePage, title: 'Flutter Demo Home Page'),
     );
   }
 }
@@ -27,6 +31,7 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
+@GenKey()
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
@@ -47,9 +52,11 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
+              key: MainKeys.title,
               'You have pushed the button this many times:',
             ),
             Text(
+              key: MainKeys.count,
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
@@ -57,6 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        key: MainKeys.fab,
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: const Icon(Icons.add),

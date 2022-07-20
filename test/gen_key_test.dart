@@ -2,7 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:gen_key/functions.dart';
 
 void main() {
-  const _prefix = '<KeysFileBuilder Tests> ';
+  const prefix = '<KeysFileBuilder Tests> ';
   const keyClassName = 'MyClassKeys';
   const keyName = 'myKey';
   const fullKeyName = '$keyClassName.$keyName';
@@ -48,7 +48,7 @@ class _Cta extends StatelessWidget {
 """;
   }
 
-  group('$_prefix key generation ', () {
+  group('$prefix key generation ', () {
     test('generates for key followed by comma', () {
       final sourceCode = mockCode(fullKeyName, ',');
       final keyMetas = keyMetasFromSourceCode(sourceCode, keyClassesNoClasses);
