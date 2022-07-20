@@ -1,7 +1,5 @@
 name: gen_key
-description: Code generation for widget keys.
-
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+description: Code generator for widget keys.
 
 version: 0.0.1
 
@@ -11,7 +9,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.5
   analyzer: ^4.2.0
   build: ^2.3.0
   source_gen: ^1.2.2
@@ -22,4 +19,4 @@ dev_dependencies:
   flutter_lints: ^2.0.1
 
 flutter:
-  uses-material-design: true
+  uses-material-design: false
