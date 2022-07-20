@@ -21,7 +21,7 @@ To generate widget keys, annotate the class that contains the references to the 
       static const Key helloText = Key('${_prefix}helloText');
     }
 
-The key class is a separate file that ends in `.keys.dart` that accompanies your class's `.dart` file. So, the keys in `my_widget.dart` are generated to `my_widget.keys.dart` by placing the `part` command at the top of your Dart file:
+The key class is a separate file that ends in `.keys.dart` that accompanies your class's `.dart` file. So, the keys in `my_widget.dart` are generated to `my_widget.keys.dart`. This is done by placing the `part` command at the top of your Dart file:
 
     part `my_widget.keys.dart`
 
