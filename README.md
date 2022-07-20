@@ -1,12 +1,23 @@
 # gen_key
 
-`gen_key` generates widget keys by parsing annotated classes. The keys must be of the form `KeyClassName.keyName`. 
+`gen_key` is a code generator for generating Flutter widget keys files. 
+
+Widget keys must be of the form `KeyClassName.keyName`. 
 
     Text('Hello', key: MyWidgetKeys.helloText);
 
-To generate widget keys, annotate the class that contains the references to the keys with `@GenKey()`:
+To generate widget keys, first reference the key in your widget:
 
-    @GenKey()
+    class MyWidget {
+      @override
+      Widget build(BuildContext context) {
+        return Text('Hello', key: MyWidgetKeys.helloText);    // <- Your key reference
+      }
+    }
+
+Then annotate the class with `@GenKey()`:
+
+    @GenKey()      // <- Add annotation
     class MyWidget {
       @override
       Widget build(BuildContext context) {
@@ -14,7 +25,7 @@ To generate widget keys, annotate the class that contains the references to the 
       }
     }
 
-'gen_key' parses the code and generates a separate key class that contains the keys.
+`gen_key` parses the code and generates a separate key class that contains the keys.
 
     class MyWidgetKeys {
       static const String _prefix = '__MyWidgetKeys__';
