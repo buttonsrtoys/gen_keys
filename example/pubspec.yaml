@@ -1,5 +1,5 @@
 name: example
-description: A new Flutter project.
+description: gen_key example
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
@@ -14,13 +14,13 @@ dependencies:
   gen_key:
     path: ../
 
-  cupertino_icons: ^1.0.2
-  build_runner: ^2.2.0
+  cupertino_icons: ^1.0.5
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+
+  flutter_lints: ^2.0.1
 
 flutter:
   uses-material-design: true

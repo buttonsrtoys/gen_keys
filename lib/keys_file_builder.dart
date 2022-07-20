@@ -1,6 +1,6 @@
 library keys_file_builder;
 
-import 'package:analyzer/dart/element/element.dart' as _element;
+import 'package:analyzer/dart/element/element.dart' as el;
 import 'package:build/build.dart';
 import 'package:gen_key/annotations.dart';
 import 'package:gen_key/functions.dart';
@@ -86,7 +86,7 @@ class KeysFileBuilder implements Builder {
     Iterable<AnnotatedElement> annotatedElements,
     String keysFilename,
     String filename,
-    _element.LibraryElement libraryElement,
+    el.LibraryElement libraryElement,
     AssetId fileInputId,
   ) {
     final bool havePart = _havePart(libraryElement, keysFilename);
@@ -105,7 +105,7 @@ class KeysFileBuilder implements Builder {
   }
 
   bool _havePart(
-    _element.LibraryElement libraryElement,
+    el.LibraryElement libraryElement,
     String keysFilename,
   ) {
     bool foundPart = false;
@@ -140,7 +140,7 @@ String _generateHeader(String partOfFilename) {
 }
 
 Future<String> _sourceCodeFromBuildStep(
-  _element.Element element,
+  el.Element element,
   BuildStep buildStep,
 ) async {
   final ast = await buildStep.resolver.astNodeFor(element);
