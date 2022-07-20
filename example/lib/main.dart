@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(key: MainKeys.homePage, title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(key: MainKeys.homePage, title: 'Flutter Demo Home Page',),
     );
   }
 }
@@ -45,6 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        key: MainKeys.appBarText,
         title: Text(widget.title),
       ),
       body: Center(
@@ -52,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              key: MainKeys.title,
+              key: MainKeys.statement,
               'You have pushed the button this many times:',
             ),
             Text(
