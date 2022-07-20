@@ -1,8 +1,8 @@
 # gen_key
 
-`gen_key` is a code generator for generating Flutter widget keys files. 
+`gen_key` is a code generator for Flutter widget keys files. 
 
-Widget keys must be of the form `KeyClassName.keyName`. 
+Widget keys must be of the form `KeyClassName.keyName`:
 
     Text('Hello', key: MyWidgetKeys.helloText);
 
@@ -34,7 +34,7 @@ Then annotate the class with `@GenKey()`:
 
 The key class is a separate file that ends in `.keys.dart` that accompanies your class's `.dart` file. So, the keys in `my_widget.dart` are generated to `my_widget.keys.dart`. This is done by placing the `part` command at the top of your Dart file:
 
-    part `my_widget.keys.dart`
+    part `my_widget.keys.dart`     // Add 'part'
 
     @GenKey()
     class MyWidget {
@@ -44,20 +44,18 @@ The key class is a separate file that ends in `.keys.dart` that accompanies your
       }
     }
 
-Sometimes a class has more keys that are generated elsewhere and you only want those of a specified file. In such cases, give all the class names you want to the `GenKey` command:
+Sometimes a class references references keys your don't want. In that cases, give all the class names you want to the `GenKey` command:
 
-    @GenKey((keyClasses: ['MyWidgetKeys'])
+    @GenKey((keyClasses: ['MyWidgetKeys'])     // <- Specify which keys to generate here
     class MyWidget {
       @override
       Widget build(BuildContext context) {
         return Row(children: <Widget> [
-          Text('Hello', key: MyWidgetKeys.helloText),
-          Text('Hi', key: SomeoneElsesWidgetKeys.buttonText),
+          Text('Hello', key: MyWidgetKeys.helloText),    // <- You want key generation for this key
+          Text('There', key: SomeoneElsesWidgetKeys.buttonText),     // <- But not for this one
         ]);
       }
     }
-
-The above call to `GenKey` will only generate keys for `MyWidgetKeys` and will not generate keys for `SomeoneElsesWidgetKeys`.
 
 To generate the key files, run `flutter pub run build runner build`.
 
