@@ -1,10 +1,10 @@
 # gen_key
 
-Generates widget keys by parses annotated classes
+`gen_key` generates widget keys by parsing annotated classes. The keys must be of the form `KeyClassName.keyName`. 
 
-## What is `gen_key`?
+    Text('Hello', key: MyWidgetKeys.helloText);
 
-To generate widget keys, annotate the class with `@GenKey()`:
+To generate widget keys, annotate the class that contains the references to the keys with `@GenKey()`:
 
     @GenKey()
     class MyWidget {
@@ -14,14 +14,14 @@ To generate widget keys, annotate the class with `@GenKey()`:
       }
     }
 
-'gen_key' parses the code and creates keys in a separate class.
+'gen_key' parses the code and generates a separate key class that contains the keys.
 
     class MyWidgetKeys {
       static const String _prefix = '__MyWidgetKeys__';
       static const Key helloText = Key('${_prefix}helloText');
     }
 
-The key class is a separate file that ends in `.keys.dart` that accompanies your class's `.dart` file. So, the keys in `my_widget.dart` are generated to `my_widget.keys.dart`. Just place the `part` command at the top of your Dart file:
+The key class is a separate file that ends in `.keys.dart` that accompanies your class's `.dart` file. So, the keys in `my_widget.dart` are generated to `my_widget.keys.dart` by placing the `part` command at the top of your Dart file:
 
     part `my_widget.keys.dart`
 
@@ -52,7 +52,7 @@ To generate the key files, run `flutter pub run build runner build`.
 
 ## Example
 
-Check out [the example]() in the package for large example.
+For a more detailed example, check out [the example]() in the package for large example.
 
 
 
