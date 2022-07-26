@@ -29,7 +29,7 @@ The key class is a separate file that ends in `.keys.dart`, so you will need the
 
 ## Now build the .keys.dart file!
 
-To generate the key files, run `pub run build runner build`.
+Execute `pub run build runner build` to generate your `my_widget.keys.dart` file which has your new keys class:
 
     class MyWidgetKeys {
       static const String _prefix = '__MyWidgetKeys__';
