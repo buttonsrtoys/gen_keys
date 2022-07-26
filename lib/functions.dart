@@ -1,5 +1,10 @@
-import 'package:flutter/foundation.dart';
-import 'package:gen_key/key_meta.dart';
+part of './gen_key.dart';
+
+class KeyMeta {
+  String keyClassName = '';
+  String keyName = '';
+  bool isFunction = false;
+}
 
 Future<String> generateKeyClass(List<KeyMeta> keyMetas) async {
   final buffer = StringBuffer();
@@ -39,7 +44,6 @@ String _keyClassFromKeyMetas(List<KeyMeta> keyMetas) {
   return buffer.toString();
 }
 
-@visibleForTesting
 String keyDeclarationFromKeyMeta(KeyMeta keyMeta) {
   late String keyDeclaration;
   if (keyMeta.isFunction) {

@@ -1,9 +1,8 @@
 name: gen_key
-description: Code generation for widget keys.
-
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-
-version: 0.0.1
+description: Code generator for developers don't want to waste time writing keys files. Add your keys to your widgets, annotate the class with @GenKey and gen_key builds the keys file for you.
+version: 0.1.0
+repository: https://github.com/buttonsrtoys/gen_key
+issue_tracker: https://github.com/buttonsrtoys/gen_key/issues
 
 environment:
   sdk: ">=2.17.6 <3.0.0"
@@ -11,7 +10,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.5
   analyzer: ^4.2.0
   build: ^2.3.0
   source_gen: ^1.2.2
@@ -22,4 +20,4 @@ dev_dependencies:
   flutter_lints: ^2.0.1
 
 flutter:
-  uses-material-design: true
+  uses-material-design: false

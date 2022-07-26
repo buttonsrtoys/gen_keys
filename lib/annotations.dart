@@ -1,3 +1,5 @@
+part of './gen_key.dart';
+
 /// build_runner annotation for generating key classes
 class GenKey {
   /// [keyClasses] is an optional parameter to explicitly list the names of the key classes to be generated. If the
