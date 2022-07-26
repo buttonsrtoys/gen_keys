@@ -1,4 +1,10 @@
-import 'package:gen_key/key_meta.dart';
+part of './gen_key.dart';
+
+class KeyMeta {
+  String keyClassName = '';
+  String keyName = '';
+  bool isFunction = false;
+}
 
 Future<String> generateKeyClass(List<KeyMeta> keyMetas) async {
   final buffer = StringBuffer();

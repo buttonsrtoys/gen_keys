@@ -1,10 +1,6 @@
-library keys_file_builder;
-
 import 'package:analyzer/dart/element/element.dart' as el;
 import 'package:build/build.dart';
-import 'package:gen_key/annotations.dart';
-import 'package:gen_key/functions.dart';
-import 'package:gen_key/key_meta.dart';
+import 'package:gen_key/gen_key.dart';
 import 'package:source_gen/source_gen.dart';
 
 Builder keysFileBuilder(BuilderOptions options) {
