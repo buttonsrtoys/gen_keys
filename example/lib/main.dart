@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:gen_key/gen_key.dart';
 
-part 'main.keys.dart';
+part 'main.keys.dart';                  // <- just add the 'part' directive...
 
 void main() {
   runApp(const MyApp());
 }
 
-@GenKey()
+@GenKey()                               // <- ...an annotation...
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(
-        key: MainKeys.homePage,
+        key: MainKeys.homePage,         // <- ...and keys....
         title: 'example',
       ),
     );
@@ -34,7 +34,7 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-@GenKey()
+@GenKey()                               // <- ...and another annotation...
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
@@ -48,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        key: MainKeys.appBarText,
+        key: MainKeys.appBarText,       // ...and keys...
         title: Text(widget.title),
       ),
       body: Center(
@@ -59,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
               'You have pushed the button this many times:',
             ),
             Text(
-              key: MainKeys.count,
+              key: MainKeys.count,      // <- ...keys...
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
@@ -67,11 +67,13 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        key: MainKeys.fab,
+        key: MainKeys.fab,              // <- ...and more keys!
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }
+
+// then 'pub run build_runner build' to generate the keys file

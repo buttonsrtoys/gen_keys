@@ -1,17 +1,15 @@
 # gen_key
 
-`gen_key` is a code generator for Flutter widget keys files. 
+`gen_key` is a code generator for developers don't want to spend time maintaining keys files. Add your keys to your widgets, annotate the class with @GenKey and gen_key builds the keys file for you.
 
-Widget keys must be of the form `KeyClassName.keyName`:
+## How it works
 
-    Text('Hello', key: MyWidgetKeys.helloText);
-
-To generate widget keys, first reference the key in your widget:
+Add your keys to widgets with the format `KeyClassName.keyName`:
 
     class MyWidget {
       @override
       Widget build(BuildContext context) {
-        return Text('Hello', key: MyWidgetKeys.helloText);    // <- Your key reference
+        return Text('Hello', key: MyWidgetKeys.helloText);    // <- Your key
       }
     }
 
@@ -25,24 +23,20 @@ Then annotate the class with `@GenKey()`:
       }
     }
 
-`gen_key` parses the code and generates a separate key class that contains the keys.
+The key class is a separate file that ends in `.keys.dart`, so you will need the `part` directive at the top of your file:
+
+    part `my_widget.keys.dart`     // Add 'part'
+
+## Now build the .keys.dart file!
+
+Execute `pub run build runner build` to generate your `my_widget.keys.dart` file which has your new keys class:
 
     class MyWidgetKeys {
       static const String _prefix = '__MyWidgetKeys__';
       static const Key helloText = Key('${_prefix}helloText');
     }
 
-The key class is a separate file that ends in `.keys.dart` that accompanies your class's `.dart` file. So, the keys in `my_widget.dart` are generated to `my_widget.keys.dart`. This is done by placing the `part` command at the top of your Dart file:
-
-    part `my_widget.keys.dart`     // Add 'part'
-
-    @GenKey()
-    class MyWidget {
-      @override
-      Widget build(BuildContext context) {
-        return Text('Hello', key: MyWidgetKeys.helloText);
-      }
-    }
+## For finer control...
 
 Sometimes a class references references keys your don't want. In that cases, give all the class names you want to the `GenKey` command:
 
@@ -57,11 +51,9 @@ Sometimes a class references references keys your don't want. In that cases, giv
       }
     }
 
-To generate the key files, run `flutter pub run build runner build`.
+## That's it!
 
-## Example
-
-For a more detailed example, check out [the example]() in the package for large example.
+For questions on anything `gen_key` please reach out or create an issue.
 
 
 
