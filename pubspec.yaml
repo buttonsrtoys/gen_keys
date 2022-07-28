@@ -1,5 +1,5 @@
 name: gen_keys
-description: Code generator for key classes and files.
+description: Renamed to gen_keys
 version: 0.1.0
 repository: https://github.com/buttonsrtoys/gen_keys
 issue_tracker: https://github.com/buttonsrtoys/gen_keys/issues
