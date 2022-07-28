@@ -1,12 +1,12 @@
 targets:
   $default:
     builders: 
-      gen_key|keys_file_builder:
+      gen_keys|keys_file_builder:
         enabled: true
 
 builders:
-  gen_key|keys_file_builder:
-    import: 'package:gen_key/keys_file_builder.dart'
+  gen_keys|keys_file_builder:
+    import: 'package:gen_keys/keys_file_builder.dart'
     builder_factories: ['keysFileBuilder']
     build_extensions: { ".dart": [".keys.dart"] }
     auto_apply: dependents

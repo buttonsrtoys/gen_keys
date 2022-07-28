@@ -1,6 +1,6 @@
 import 'package:analyzer/dart/element/element.dart' as el;
 import 'package:build/build.dart';
-import 'package:gen_key/gen_key.dart';
+import 'package:gen_keys/gen_keys.dart';
 import 'package:source_gen/source_gen.dart';
 
 Builder keysFileBuilder(BuilderOptions options) {
@@ -23,7 +23,7 @@ class KeysFileBuilder implements Builder {
       final keysFileInputId = fileInputId.changeExtension('.keys.dart');
       final keysFilename = keysFileInputId.pathSegments.last;
       final libraryElement = await buildStep.resolver.libraryFor(fileInputId);
-      const typeChecker = TypeChecker.fromRuntime(GenKey);
+      const typeChecker = TypeChecker.fromRuntime(GenKeys);
       final annotatedElements = LibraryReader(libraryElement).annotatedWith(typeChecker);
 
       _throwOnPartOrAnnotationWrong(annotatedElements, keysFilename, filename, libraryElement, fileInputId);
@@ -73,7 +73,7 @@ class KeysFileBuilder implements Builder {
   void _throwOnAnnotationButNoKeys(List<KeyMeta> keyMetasForAllClasses, AssetId fileInputId) {
     if (keyMetasForAllClasses.isEmpty) {
       throw Exception(
-        "No keys found in classes annotated with @GenKey in '$fileInputId'",
+        "No keys found in classes annotated with @GenKeys in '$fileInputId'",
       );
     }
   }
@@ -95,7 +95,7 @@ class KeysFileBuilder implements Builder {
 
     if (havePart && annotatedElements.isEmpty) {
       throw Exception(
-        "No classes annotated with @GenKey in '$filename'",
+        "No classes annotated with @GenKeys in '$filename'",
       );
     }
   }

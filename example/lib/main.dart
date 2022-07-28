@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:gen_key/gen_key.dart';
+import 'package:gen_keys/gen_keys.dart';
 
-part 'main.keys.dart';                  // <- just add the 'part' directive...
+part 'main.keys.dart';                  // <- Add the 'part' directive...
 
 void main() {
   runApp(const MyApp());
 }
 
-@GenKey()                               // <- ...an annotation...
+@GenKeys()                               // <- ...an annotation...
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
@@ -34,7 +34,7 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-@GenKey()                               // <- ...and another annotation...
+@GenKeys()                               // <- ...and another annotation...
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 

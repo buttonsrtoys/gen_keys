@@ -1,6 +1,6 @@
-# gen_key
+# gen_keys
 
-`gen_key` is a code generator for developers don't want to spend time maintaining keys files. Add your keys to your widgets, annotate the class with @GenKey and gen_key builds the keys file for you.
+`gen_keys` is a code generator that generates key classes and files. Add your keys to your widgets, annotate the class with `@GenKeys` and `gen_keys` builds the keys file for you.
 
 ## How it works
 
@@ -13,9 +13,9 @@ Add your keys to widgets with the format `KeyClassName.keyName`:
       }
     }
 
-Then annotate the class with `@GenKey()`:
+Then annotate the class with `@GenKeys()`:
 
-    @GenKey()      // <- Add annotation
+    @GenKeys()      // <- Add annotation
     class MyWidget {
       @override
       Widget build(BuildContext context) {
@@ -31,6 +31,8 @@ The key class is a separate file that ends in `.keys.dart`, so you will need the
 
 Execute `pub run build runner build` to generate your `my_widget.keys.dart` file which has your new keys class:
 
+    part of 'my_widget.dart';
+
     class MyWidgetKeys {
       static const String _prefix = '__MyWidgetKeys__';
       static const Key helloText = Key('${_prefix}helloText');
@@ -38,9 +40,9 @@ Execute `pub run build runner build` to generate your `my_widget.keys.dart` file
 
 ## For finer control...
 
-Sometimes a class references references keys your don't want. In that cases, give all the class names you want to the `GenKey` command:
+Sometimes a class references references keys your don't want. In that cases, give all the class names you want to the `GenKeys` command:
 
-    @GenKey((keyClasses: ['MyWidgetKeys'])     // <- Specify which keys to generate here
+    @GenKeys((keyClasses: ['MyWidgetKeys'])     // <- Specify which keys to generate here
     class MyWidget {
       @override
       Widget build(BuildContext context) {
@@ -53,7 +55,7 @@ Sometimes a class references references keys your don't want. In that cases, giv
 
 ## That's it!
 
-For questions on anything `gen_key` please reach out or create an issue.
+For questions on anything `gen_keys` please reach out or create an issue.
 
 
 
