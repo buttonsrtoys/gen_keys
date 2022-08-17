@@ -1,6 +1,6 @@
 name: gen_keys
-description: Renamed to gen_keys
-version: 0.1.2
+description: Code generator for widget keys. Builds a keys class in a separate parts file for classes annotated with @GenKeys().
+version: 0.1.0
 repository: https://github.com/buttonsrtoys/gen_keys
 issue_tracker: https://github.com/buttonsrtoys/gen_keys/issues
 

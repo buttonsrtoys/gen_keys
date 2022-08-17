@@ -58,9 +58,6 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
             Text(
               key: MainKeys.count,      // <- ...keys...
               '$_counter',
@@ -72,8 +69,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 _counter = Random().nextInt(100);
               }),
               child: const Text(
-                key: MainKeys.randomButtonText,
                 'Set Random',
+                key: MainKeys.randomButtonText,
               ),
             ),
             OutlinedButton(
@@ -82,8 +79,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 _counter = 42;
               }),
               child: const Text(
-                key: MainKeys.fortyTwoButtonText,
                 'Set 42',
+                key: MainKeys.fortyTwoButtonText,
               ),
             ),
           ],
