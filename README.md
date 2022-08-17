@@ -1,6 +1,6 @@
 # gen_key
 
-`gen_key` is a code generator for developers don't want to spend time maintaining keys files. Add your keys to your widgets, annotate the class with @GenKey and gen_key builds the keys file for you.
+A code generator for widget keys. Annotate the class with @GenKeys() and GenKeys builds a keys class in a separate parts file.
 
 ## How it works
 
@@ -13,9 +13,9 @@ Add your keys to widgets with the format `KeyClassName.keyName`:
       }
     }
 
-Then annotate the class with `@GenKey()`:
+Then annotate the class with `@GenKeys()`:
 
-    @GenKey()      // <- Add annotation
+    @GenKeys()      // <- Add annotation
     class MyWidget {
       @override
       Widget build(BuildContext context) {
@@ -23,9 +23,9 @@ Then annotate the class with `@GenKey()`:
       }
     }
 
-The key class is a separate file that ends in `.keys.dart`, so you will need the `part` directive at the top of your file:
+The key class is a separate file that ends in `.keys.dart`, so add the `part` directive at the top of your file:
 
-    part `my_widget.keys.dart`     // Add 'part'
+    part `my_widget.keys.dart`
 
 ## Now build the .keys.dart file!
 
@@ -38,15 +38,15 @@ Execute `pub run build runner build` to generate your `my_widget.keys.dart` file
 
 ## For finer control...
 
-Sometimes a class references references keys your don't want. In that cases, give all the class names you want to the `GenKey` command:
+Sometimes a class references references keys your don't want. In that cases, give all the class names you want to the `@GenKeys` command:
 
-    @GenKey((keyClasses: ['MyWidgetKeys'])     // <- Specify which keys to generate here
+    @GenKeys((keyClasses: ['MyWidgetKeys']) // <- Optionally specify the key class to generate
     class MyWidget {
       @override
       Widget build(BuildContext context) {
         return Row(children: <Widget> [
-          Text('Hello', key: MyWidgetKeys.helloText),    // <- You want key generation for this key
-          Text('There', key: SomeoneElsesWidgetKeys.buttonText),     // <- But not for this one
+          Text('Hello', key: MyWidgetKeys.helloText), // <- Generates this key
+          Text('There', key: SomeoneElsesWidgetKeys.buttonText), // <- But not this one
         ]);
       }
     }

@@ -1,26 +1,25 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:gen_key/gen_key.dart';
 
-part 'main.keys.dart';                  // <- just add the 'part' directive...
+part "main.keys.dart";
 
 void main() {
   runApp(const MyApp());
 }
 
-@GenKey()                               // <- ...an annotation...
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'example',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(
-        key: MainKeys.homePage,         // <- ...and keys....
-        title: 'example',
-      ),
+      home: const MyHomePage(title: 'example'),
     );
   }
 }
@@ -34,7 +33,7 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-@GenKey()                               // <- ...and another annotation...
+@GenKey()
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
@@ -48,32 +47,52 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        key: MainKeys.appBarText,       // ...and keys...
-        title: Text(widget.title),
+        title: Text(
+          key: MyHomePageKeys.pageTitle,
+          widget.title,
+        ),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
+          children: [
             Text(
-              key: MainKeys.count,      // <- ...keys...
+              key: MyHomePageKeys.counterText,
               '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+              style: const TextStyle(fontSize: 64),
+            ),
+            OutlinedButton(
+              key: MyHomePageKeys.randomButton,
+              onPressed: () => setState(() {
+                _counter = Random().nextInt(100);
+              }),
+              child: const Text(
+                key: MyHomePageKeys.randomButtonText,
+                'Set Random',
+              ),
+            ),
+            OutlinedButton(
+              key: MyHomePageKeys.fortyTwoButton,
+              onPressed: () => setState(() {
+                _counter = 42;
+              }),
+              child: const Text(
+                key: MyHomePageKeys.fortyTwoButtonText,
+                'Set 42',
+              ),
             ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        key: MainKeys.fab,              // <- ...and more keys!
+        key: MyHomePageKeys.floatingActionButton,
         onPressed: _incrementCounter,
         tooltip: 'Increment',
-        child: const Icon(Icons.add),
+        child: const Icon(
+          key: MyHomePageKeys.floatingActionButtonIcon,
+          Icons.add,
+        ),
       ),
     );
   }
 }
-
-// then 'pub run build_runner build' to generate the keys file

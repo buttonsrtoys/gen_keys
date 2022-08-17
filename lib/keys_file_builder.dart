@@ -1,13 +1,13 @@
 import 'package:analyzer/dart/element/element.dart' as el;
-import 'package:build/build.dart';
+import 'package:build/build.dart' as bld;
 import 'package:gen_key/gen_key.dart';
 import 'package:source_gen/source_gen.dart';
 
-Builder keysFileBuilder(BuilderOptions options) {
+bld.Builder keysFileBuilder(bld.BuilderOptions options) {
   return KeysFileBuilder();
 }
 
-class KeysFileBuilder implements Builder {
+class KeysFileBuilder implements bld.Builder {
   KeysFileBuilder();
 
   @override
@@ -16,7 +16,7 @@ class KeysFileBuilder implements Builder {
   };
 
   @override
-  Future<void> build(BuildStep buildStep) async {
+  Future<void> build(bld.BuildStep buildStep) async {
     try {
       final fileInputId = buildStep.inputId;
       final filename = fileInputId.pathSegments.last;
@@ -35,14 +35,14 @@ class KeysFileBuilder implements Builder {
 
         await _generateKeysFile(filename, keyMetas, buildStep, keysFileInputId);
       }
-    } on NonLibraryAssetException {
+    } on bld.NonLibraryAssetException {
       // if here, likely hit a file we don't want to process. (e.g., .g.dart file). Do nothing.
     }
   }
 
   Future<List<KeyMeta>> _keyMetasFromAnnotatedElements(
     Iterable<AnnotatedElement> annotatedElements,
-    BuildStep buildStep,
+    bld.BuildStep buildStep,
   ) async {
     final keyMetasForAllClasses = <KeyMeta>[];
     for (final annotatedElement in annotatedElements) {
@@ -61,8 +61,8 @@ class KeysFileBuilder implements Builder {
   Future<void> _generateKeysFile(
     String filename,
     List<KeyMeta> keyMetasForAllClasses,
-    BuildStep buildStep,
-    AssetId keysFileInputId,
+    bld.BuildStep buildStep,
+    bld.AssetId keysFileInputId,
   ) async {
     final buffer = StringBuffer();
     buffer.write(_generateHeader(filename));
@@ -70,7 +70,7 @@ class KeysFileBuilder implements Builder {
     await buildStep.writeAsString(keysFileInputId, buffer.toString());
   }
 
-  void _throwOnAnnotationButNoKeys(List<KeyMeta> keyMetasForAllClasses, AssetId fileInputId) {
+  void _throwOnAnnotationButNoKeys(List<KeyMeta> keyMetasForAllClasses, bld.AssetId fileInputId) {
     if (keyMetasForAllClasses.isEmpty) {
       throw Exception(
         "No keys found in classes annotated with @GenKey in '$fileInputId'",
@@ -83,7 +83,7 @@ class KeysFileBuilder implements Builder {
     String keysFilename,
     String filename,
     el.LibraryElement libraryElement,
-    AssetId fileInputId,
+    bld.AssetId fileInputId,
   ) {
     final bool havePart = _havePart(libraryElement, keysFilename);
 
@@ -106,7 +106,9 @@ class KeysFileBuilder implements Builder {
   ) {
     bool foundPart = false;
 
+    // debugPrint('*** Start part search');
     for (final part in libraryElement.parts) {
+      // debugPrint('*** part: $part');
       if (part.toString().contains('/$keysFilename')) {
         foundPart = true;
         break;
@@ -137,7 +139,7 @@ String _generateHeader(String partOfFilename) {
 
 Future<String> _sourceCodeFromBuildStep(
   el.Element element,
-  BuildStep buildStep,
+  bld.BuildStep buildStep,
 ) async {
   final ast = await buildStep.resolver.astNodeFor(element);
 
