@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:gen_key/gen_key.dart';
+import 'package:gen_keys/gen_keys.dart';
 
 void main() {
   const prefix = '<KeysFileBuilder Tests> ';

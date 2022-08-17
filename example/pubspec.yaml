@@ -1,5 +1,5 @@
 name: example
-description: gen_key example
+description: gen_keys example
 
 version: 0.1.0
 
@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  gen_key:
+  gen_keys:
     path: ../
 
   cupertino_icons: ^1.0.5

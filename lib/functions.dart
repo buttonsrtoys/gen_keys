@@ -1,4 +1,4 @@
-part of './gen_key.dart';
+part of './gen_keys.dart';
 
 class KeyMeta {
   String keyClassName = '';

@@ -1,14 +1,15 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:gen_key/gen_key.dart';
+import 'package:gen_keys/gen_keys.dart';
 
-part "main.keys.dart";
+part 'main.keys.dart';                  // <- Add the 'part' directive...
 
 void main() {
   runApp(const MyApp());
 }
 
+@GenKeys()                               // <- ...an annotation...
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -19,7 +20,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'example'),
+      home: const MyHomePage(
+        key: MainKeys.homePage,         // <- ...and keys....
+        title: 'example',
+      ),
     );
   }
 }
@@ -33,7 +37,7 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-@GenKey()
+@GenKeys()                               // <- ...and another annotation...
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
@@ -47,17 +51,18 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          key: MyHomePageKeys.pageTitle,
-          widget.title,
-        ),
+        key: MainKeys.appBarText,       // ...and keys...
+        title: Text(widget.title),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+          children: <Widget>[
+            const Text(
+              'You have pushed the button this many times:',
+            ),
             Text(
-              key: MyHomePageKeys.counterText,
+              key: MainKeys.count,      // <- ...keys...
               '$_counter',
               style: const TextStyle(fontSize: 64),
             ),
@@ -85,14 +90,13 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        key: MyHomePageKeys.floatingActionButton,
+        key: MainKeys.fab,              // <- ...and more keys!
         onPressed: _incrementCounter,
         tooltip: 'Increment',
-        child: const Icon(
-          key: MyHomePageKeys.floatingActionButtonIcon,
-          Icons.add,
-        ),
+        child: const Icon(Icons.add),
       ),
     );
   }
 }
+
+// then 'pub run build_runner build' to generate the keys file

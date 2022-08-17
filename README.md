@@ -1,3 +1,5 @@
+# gen_keys
+
 # gen_key
 
 A code generator for widget keys. Annotate the class with @GenKeys() and GenKeys builds a keys class in a separate parts file.
@@ -31,6 +33,8 @@ The key class is a separate file that ends in `.keys.dart`, so add the `part` di
 
 Execute `pub run build runner build` to generate your `my_widget.keys.dart` file which has your new keys class:
 
+    part of 'my_widget.dart';
+
     class MyWidgetKeys {
       static const String _prefix = '__MyWidgetKeys__';
       static const Key helloText = Key('${_prefix}helloText');
@@ -51,9 +55,9 @@ Sometimes a class references references keys your don't want. In that cases, giv
       }
     }
 
+## Example
+
+((Rich, 
 ## That's it!
 
 For questions on anything `gen_key` please reach out or create an issue.
-
-
-

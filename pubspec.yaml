@@ -1,8 +1,8 @@
-name: gen_key
-description: Code generator for developers don't want to waste time writing keys files. Add your keys to your widgets, annotate the class with @GenKey and gen_key builds the keys file for you.
-version: 0.1.0
-repository: https://github.com/buttonsrtoys/gen_key
-issue_tracker: https://github.com/buttonsrtoys/gen_key/issues
+name: gen_keys
+description: Renamed to gen_keys
+version: 0.1.2
+repository: https://github.com/buttonsrtoys/gen_keys
+issue_tracker: https://github.com/buttonsrtoys/gen_keys/issues
 
 environment:
   sdk: ">=2.17.6 <3.0.0"
