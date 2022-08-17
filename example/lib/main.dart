@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:gen_keys/gen_keys.dart';
 
@@ -10,10 +12,11 @@ void main() {
 @GenKeys()                               // <- ...an annotation...
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'example',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -55,13 +58,30 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
             Text(
               key: MainKeys.count,      // <- ...keys...
               '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+              style: const TextStyle(fontSize: 64),
+            ),
+            OutlinedButton(
+              key: MainKeys.randomButton,
+              onPressed: () => setState(() {
+                _counter = Random().nextInt(100);
+              }),
+              child: const Text(
+                'Set Random',
+                key: MainKeys.randomButtonText,
+              ),
+            ),
+            OutlinedButton(
+              key: MainKeys.fortyTwoButton,
+              onPressed: () => setState(() {
+                _counter = 42;
+              }),
+              child: const Text(
+                'Set 42',
+                key: MainKeys.fortyTwoButtonText,
+              ),
             ),
           ],
         ),

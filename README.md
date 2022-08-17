@@ -1,6 +1,8 @@
-# gen_key (renamed to gen_keys)
+# gen_keys
 
-`gen_keys` is a code generator that generates key classes and files. Add your keys to your widgets, annotate the class with `@GenKeys` and `gen_keys` builds the keys file for you.
+![gen_keys](https://github.com/buttonsrtoys/gen_keys/blob/main/assets/GenKeysLogo.png)
+
+Code generator for widget keys. Builds a keys class in a separate parts file for classes annotated with @GenKeys().
 
 ## How it works
 
@@ -9,7 +11,7 @@ Add your keys to widgets with the format `KeyClassName.keyName`:
     class MyWidget {
       @override
       Widget build(BuildContext context) {
-        return Text('Hello', key: MyWidgetKeys.helloText);    // <- Your key
+        return Text('Hello', key: MyWidgetKeys.greeting);    // <- Your key
       }
     }
 
@@ -19,13 +21,13 @@ Then annotate the class with `@GenKeys()`:
     class MyWidget {
       @override
       Widget build(BuildContext context) {
-        return Text('Hello', key: MyWidgetKeys.helloText);
+        return Text('Hello', key: MyWidgetKeys.greeting);
       }
     }
 
-The key class is a separate file that ends in `.keys.dart`, so you will need the `part` directive at the top of your file:
+The key class is a separate file that ends in `.keys.dart`, so add the `part` directive at the top of your file:
 
-    part `my_widget.keys.dart`     // Add 'part'
+    part `my_widget.keys.dart`
 
 ## Now build the .keys.dart file!
 
@@ -35,24 +37,28 @@ Execute `pub run build runner build` to generate your `my_widget.keys.dart` file
 
     class MyWidgetKeys {
       static const String _prefix = '__MyWidgetKeys__';
-      static const Key helloText = Key('${_prefix}helloText');
+      static const Key greeting = Key('${_prefix}greeting');
     }
 
 ## For finer control...
 
-Sometimes a class references references keys your don't want. In that cases, give all the class names you want to the `GenKeys` command:
+Sometimes a class references references keys your don't want. In that cases, give all the class names you want to the `@GenKeys` command:
 
-    @GenKeys((keyClasses: ['MyWidgetKeys'])     // <- Specify which keys to generate here
+    @GenKeys((keyClasses: ['MyWidgetKeys']) // <- Optionally specify the key class to generate
     class MyWidget {
       @override
       Widget build(BuildContext context) {
         return Row(children: <Widget> [
-          Text('Hello', key: MyWidgetKeys.helloText),    // <- You want key generation for this key
-          Text('There', key: SomeoneElsesWidgetKeys.buttonText),     // <- But not for this one
+          Text('Hello', key: MyWidgetKeys.greeting), // <- Generates this key
+          Text('There', key: YourWidgetKeys.buttonText), // <- But not this one
         ]);
       }
     }
 
+## Example
+
+Rich, infill
+
 ## That's it!
 
-For questions on anything `gen_keys` please reach out or create an issue.
+For questions on anything `gen_key` please reach out or create an issue.
