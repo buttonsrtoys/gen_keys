@@ -67,22 +67,22 @@ class _MyHomePageState extends State<MyHomePage> {
               style: const TextStyle(fontSize: 64),
             ),
             OutlinedButton(
-              key: MyHomePageKeys.randomButton,
+              key: MainKeys.randomButton,
               onPressed: () => setState(() {
                 _counter = Random().nextInt(100);
               }),
               child: const Text(
-                key: MyHomePageKeys.randomButtonText,
+                key: MainKeys.randomButtonText,
                 'Set Random',
               ),
             ),
             OutlinedButton(
-              key: MyHomePageKeys.fortyTwoButton,
+              key: MainKeys.fortyTwoButton,
               onPressed: () => setState(() {
                 _counter = 42;
               }),
               child: const Text(
-                key: MyHomePageKeys.fortyTwoButtonText,
+                key: MainKeys.fortyTwoButtonText,
                 'Set 42',
               ),
             ),
