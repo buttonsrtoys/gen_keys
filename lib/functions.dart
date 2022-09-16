@@ -1,11 +1,15 @@
 part of './gen_keys.dart';
 
+/// Attributes of the key
 class KeyMeta {
   String keyClassName = '';
   String keyName = '';
   bool isFunction = false;
 }
 
+/// Generate the class containing the keys
+///
+/// Returns the generated class
 Future<String> generateKeyClass(List<KeyMeta> keyMetas) async {
   final buffer = StringBuffer();
 
@@ -44,6 +48,12 @@ String _keyClassFromKeyMetas(List<KeyMeta> keyMetas) {
   return buffer.toString();
 }
 
+@visibleForTesting
+/// Generates a key declaration within the key class
+///
+/// [keyMeta] is the information about the key.
+///
+/// Returns the key declaration.
 String keyDeclarationFromKeyMeta(KeyMeta keyMeta) {
   late String keyDeclaration;
   if (keyMeta.isFunction) {
@@ -57,6 +67,13 @@ String keyDeclarationFromKeyMeta(KeyMeta keyMeta) {
   return keyDeclaration;
 }
 
+@visibleForTesting
+/// Parses Dart code into key meta data
+///
+/// [classSourceCode] is dart source code for parsing.
+/// [keyClasses] is the names of the key classes to search for.
+///
+/// Returns list of [KeyMeta].
 List<KeyMeta> keyMetasFromSourceCode(
   String classSourceCode,
   List<String> keyClasses,
