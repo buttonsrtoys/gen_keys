@@ -83,6 +83,7 @@ List<KeyMeta> keyMetasFromSourceCode(
   return _keyMetasFromKeyStrings(uniqueKeyStrings, keyClasses);
 }
 
+/// Return a list of strings with found keys (if any).
 List<String> _getKeyStrings(String sourceCode) {
   final keyStrings = <String>[];
   final expression = RegExp(r'(?<=key\: )(\w+\.\w+\(?\w*)(?=[\,|\)])');
