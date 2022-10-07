@@ -2,7 +2,5 @@
 /// Richard Coutts <richard@richardcoutts.com>
 library gen_keys;
 
-import 'package:flutter/cupertino.dart';
-
 part './annotations.dart';
 part './functions.dart';
