@@ -3,10 +3,12 @@ import 'package:build/build.dart' as bld;
 import 'package:gen_keys/gen_keys.dart';
 import 'package:source_gen/source_gen.dart';
 
+/// Return an instance of [KeysFileBuilder]
 bld.Builder keysFileBuilder(bld.BuilderOptions options) {
   return KeysFileBuilder();
 }
 
+/// Parses Dart code into keys file.
 class KeysFileBuilder implements bld.Builder {
   KeysFileBuilder();
 
@@ -40,6 +42,7 @@ class KeysFileBuilder implements bld.Builder {
     }
   }
 
+  /// Generate [KeyMeta] instances for elements with annotations.
   Future<List<KeyMeta>> _keyMetasFromAnnotatedElements(
     Iterable<AnnotatedElement> annotatedElements,
     bld.BuildStep buildStep,
@@ -58,6 +61,7 @@ class KeysFileBuilder implements bld.Builder {
     return keyMetasForAllClasses;
   }
 
+  /// Perform the code generation.
   Future<void> _generateKeysFile(
     String filename,
     List<KeyMeta> keyMetasForAllClasses,
@@ -70,6 +74,7 @@ class KeysFileBuilder implements bld.Builder {
     await buildStep.writeAsString(keysFileInputId, buffer.toString());
   }
 
+  /// Convenience throw function.
   void _throwOnAnnotationButNoKeys(List<KeyMeta> keyMetasForAllClasses, bld.AssetId fileInputId) {
     if (keyMetasForAllClasses.isEmpty) {
       throw Exception(
@@ -78,6 +83,7 @@ class KeysFileBuilder implements bld.Builder {
     }
   }
 
+  /// Convenience throw function.
   void _throwOnPartOrAnnotationWrong(
     Iterable<AnnotatedElement> annotatedElements,
     String keysFilename,
@@ -100,15 +106,14 @@ class KeysFileBuilder implements bld.Builder {
     }
   }
 
+  /// returns true of `part` declaration made.
   bool _havePart(
     el.LibraryElement libraryElement,
     String keysFilename,
   ) {
     bool foundPart = false;
 
-    // debugPrint('*** Start part search');
     for (final part in libraryElement.parts) {
-      // debugPrint('*** part: $part');
       if (part.toString().contains('/$keysFilename')) {
         foundPart = true;
         break;
@@ -119,6 +124,7 @@ class KeysFileBuilder implements bld.Builder {
   }
 }
 
+/// Generate the file header.
 String _generateHeader(String partOfFilename) {
   final buffer = StringBuffer();
 
@@ -137,6 +143,7 @@ String _generateHeader(String partOfFilename) {
   return buffer.toString();
 }
 
+/// Generate the file source code.
 Future<String> _sourceCodeFromBuildStep(
   el.Element element,
   bld.BuildStep buildStep,
@@ -154,6 +161,7 @@ Future<String> _sourceCodeFromBuildStep(
   return classSourceCode;
 }
 
+/// Return a list of key classes (if any) in the annotation.
 List<String> _keyClassesFromAnnotation(
   ConstantReader annotation,
 ) {
