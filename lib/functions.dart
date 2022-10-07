@@ -48,7 +48,6 @@ String _keyClassFromKeyMetas(List<KeyMeta> keyMetas) {
   return buffer.toString();
 }
 
-@visibleForTesting
 /// Generates a key declaration within the key class
 ///
 /// [keyMeta] is the information about the key.
@@ -67,7 +66,6 @@ String keyDeclarationFromKeyMeta(KeyMeta keyMeta) {
   return keyDeclaration;
 }
 
-@visibleForTesting
 /// Parses Dart code into key meta data
 ///
 /// [classSourceCode] is dart source code for parsing.
