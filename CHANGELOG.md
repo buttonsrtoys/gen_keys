@@ -1,3 +1,6 @@
+## 0.1.2
+Cleaned up dependencies.
+
 ## 0.1.1
 Added code documentation.
 
