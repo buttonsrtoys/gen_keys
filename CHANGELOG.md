@@ -1,3 +1,6 @@
+## 0.1.3
+Upgraded dependencies.
+
 ## 0.1.2
 Cleaned up dependencies.
 
